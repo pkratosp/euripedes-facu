@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String @id @default(uuid())
+  nome     String
+  username String @unique
+  password String
+}
+
+model Aluno {
+  id                String  @id @default(uuid())
+  nome              String
+  sexo              String
+  nis               String
+  dataNascimento    String
+  rg                String  @unique
+  cpf               String  @unique
+  filiacaoMae       String
+  pai               String?
+  responsavel       String
+  rgResponsavel     String
+  cpfResponsavel    String
+  naturalidade      String
+  estado            String
+  ultimaProcedencia String
+  ra                String  @unique
+  escola            String
+  serieEscola       String
+  endereco          String
+  bairro            String
+  cep               String
+  contatos          String
+
+  ocorrencias Ocorrencias[]
+  matriculas  Matriculas[]
+}
+
+model Ocorrencias {
+  id             String   @id @default(uuid())
+  titulo         String
+  descricao      String
+  dataOcorrencia DateTime @default(now())
+
+  Aluno   Aluno  @relation(fields: [alunoId], references: [id])
+  alunoId String
+}
+
+model Matriculas {
+  id               String  @id @default(uuid())
+  atendido         String
+  telefoneMae      String
+  telefonePai      String?
+  telefoneRecado   String?
+  responsavelLegal String
+  anoMatricula     Int
+
+  Aluno   Aluno  @relation(fields: [alunoId], references: [id])
+  alunoId String
+
+  perguntas Perguntas[]
+}
+
+model Perguntas {
+  id        String @id @default(uuid())
+  titulo    String
+  descricao String
+
+  Matriculas  Matriculas @relation(fields: [matriculaId], references: [id])
+  matriculaId String
+
+  respostas Respostas[]
+}
+
+model Respostas {
+  id       String @id @default(uuid())
+  resposta String
+
+  Perguntas   Perguntas? @relation(fields: [perguntasId], references: [id])
+  perguntasId String?
+}

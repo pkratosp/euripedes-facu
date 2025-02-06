@@ -1,12 +1,18 @@
 import { RepositoryOcorrencia } from '@/repositories/repository-ocorrencia';
 import { Injectable } from '@nestjs/common';
-import { Ocorrencias } from '@prisma/client';
+
+export type CadastrarOcorrenciaRequest = {
+  titulo: string;
+  descricao: string;
+  dataOcorrencia: Date;
+  alunoId: string;
+};
 
 @Injectable()
 export class CadastrarOcorrencia {
   constructor(private readonly repositoryOcorrencia: RepositoryOcorrencia) {}
 
-  async execute(data: Ocorrencias) {
+  async execute(data: CadastrarOcorrenciaRequest) {
     await this.repositoryOcorrencia.registrarOcorrencia(data);
   }
 }

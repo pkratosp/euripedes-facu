@@ -1,8 +1,11 @@
 import { RepositoryFormulario } from '@/repositories/repository-formulario';
 import { Injectable } from '@nestjs/common';
-import { Perguntas } from '@prisma/client';
 
-interface CriarPerguntasRequest extends Perguntas {}
+export type CriarPerguntasRequest = {
+  titulo: string;
+  descricao: string;
+  matriculaId: string;
+};
 
 @Injectable()
 export class CriarPerguntas {

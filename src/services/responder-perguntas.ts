@@ -2,7 +2,10 @@ import { RepositoryFormulario } from '@/repositories/repository-formulario';
 import { Injectable } from '@nestjs/common';
 import { Respostas } from '@prisma/client';
 
-interface ResponderPerguntasRequest extends Respostas {}
+export type ResponderPerguntasRequest = {
+  resposta: string;
+  perguntasId: string | null;
+};
 
 @Injectable()
 export class ResponderPerguntas {

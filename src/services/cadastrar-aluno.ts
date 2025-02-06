@@ -1,33 +1,29 @@
 import { RepositoryAluno } from '@/repositories/repository-aluno';
 import { Injectable } from '@nestjs/common';
-import { Aluno } from '@prisma/client';
-import { z } from 'zod';
 
-const bodyAluno = z.object({
-  nome: z.string(),
-  sexo: z.string(),
-  nis: z.string(),
-  dataNascimento: z.string(),
-  rg: z.string(),
-  cpf: z.string(),
-  filiacaoMae: z.string(),
-  pai: z.string(),
-  responsavel: z.string(),
-  rgResponsavel: z.string(),
-  cpfResponsavel: z.string(),
-  naturalidade: z.string(),
-  estado: z.string(),
-  ultimaProcedencia: z.string(),
-  ra: z.string(),
-  escola: z.string(),
-  serieEscola: z.string(),
-  endereco: z.string(),
-  bairro: z.string(),
-  cep: z.string(),
-  contatos: z.string(),
-});
-
-export type CadastrarAlunoRequest = z.infer<typeof bodyAluno>;
+export type CadastrarAlunoRequest = {
+  nome: string;
+  sexo: string;
+  nis: string;
+  dataNascimento: string;
+  rg: string;
+  cpf: string;
+  filiacaoMae: string;
+  pai: string;
+  responsavel: string;
+  rgResponsavel: string;
+  cpfResponsavel: string;
+  naturalidade: string;
+  estado: string;
+  ultimaProcedencia: string;
+  ra: string;
+  escola: string;
+  serieEscola: string;
+  endereco: string;
+  bairro: string;
+  cep: string;
+  contatos: string;
+};
 
 @Injectable()
 export class CadastrarAluno {

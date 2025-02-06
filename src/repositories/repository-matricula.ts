@@ -1,6 +1,7 @@
-import { Matriculas } from '@prisma/client';
+import { MatricularAlunoRequest } from '@/services/matricular-aluno';
+import { RematricularAlunoRequest } from '@/services/rematricular-aluno';
 
 export abstract class RepositoryMatricula {
-  abstract matricularAluno(data: Matriculas): Promise<void>;
-  abstract rematricularAluno(data: Matriculas): Promise<void>;
+  abstract matricularAluno(data: MatricularAlunoRequest): Promise<void>;
+  abstract rematricularAluno(data: RematricularAlunoRequest): Promise<void>;
 }

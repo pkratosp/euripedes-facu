@@ -1,8 +1,8 @@
 import { RepositoryMatricula } from '@/repositories/repository-matricula';
 import { Injectable } from '@nestjs/common';
-import { Matriculas } from '@prisma/client';
+import { MatricularAlunoRequest } from './matricular-aluno';
 
-interface RematricularAlunoRequest extends Matriculas {}
+export type RematricularAlunoRequest = MatricularAlunoRequest;
 
 @Injectable()
 export class RematricularAluno {

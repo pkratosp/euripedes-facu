@@ -12,7 +12,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["vitest/globals"],
+    "types": ["vitest/globals", "@types/multer"],
     "incremental": true,
     "skipLibCheck": true,
     "strict": true,

@@ -7,6 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum TipoDocumento {
+  Aluno
+  Matricula
+}
+
 model User {
   id       String @id @default(uuid())
   nome     String
@@ -38,8 +43,9 @@ model Aluno {
   cep               String
   contatos          String
 
-  ocorrencias Ocorrencias[]
-  matriculas  Matriculas[]
+  ocorrencias      Ocorrencias[]
+  matriculas       Matriculas[]
+  documentosAlunos Documentos[]
 }
 
 model Ocorrencias {
@@ -64,7 +70,8 @@ model Matriculas {
   Aluno   Aluno  @relation(fields: [alunoId], references: [id])
   alunoId String
 
-  perguntas Perguntas[]
+  documentosMatricula Documentos[]
+  respostas           Respostas[]
 }
 
 model Perguntas {
@@ -72,16 +79,27 @@ model Perguntas {
   titulo    String
   descricao String
 
-  Matriculas  Matriculas @relation(fields: [matriculaId], references: [id])
-  matriculaId String
-
   respostas Respostas[]
 }
 
 model Respostas {
-  id       String @id @default(uuid())
-  resposta String
+  id           String  @id @default(uuid())
+  resposta     String
+  perguntasId  String?
+  matriculasId String?
 
-  Perguntas   Perguntas? @relation(fields: [perguntasId], references: [id])
-  perguntasId String?
+  Perguntas  Perguntas?  @relation(fields: [perguntasId], references: [id])
+  Matriculas Matriculas? @relation(fields: [matriculasId], references: [id])
+}
+
+model Documentos {
+  id          String @id @default(uuid())
+  nomeArquivo String
+  url         String @unique
+
+  idMatricula String?
+  alunoId     String?
+
+  Matriculas Matriculas? @relation(fields: [idMatricula], references: [id])
+  Aluno      Aluno?      @relation(fields: [alunoId], references: [id])
 }

@@ -17,9 +17,11 @@ import { ResponderPerguntas } from '@/services/responder-perguntas';
 import { DatabaseModule } from '../database/database.module';
 import { StorageModule } from './storage/storage.module';
 import { UploadFileController } from './controllers/upload-file.controller';
+import { CryptographyModule } from '../cryptography/cryptography.module';
+import { UploadDocumento } from '@/services/upload-documento';
 
 @Module({
-  imports: [DatabaseModule, StorageModule, StorageModule],
+  imports: [DatabaseModule, StorageModule, StorageModule, CryptographyModule],
   controllers: [
     AlunoController,
     MatriculaController,
@@ -39,6 +41,7 @@ import { UploadFileController } from './controllers/upload-file.controller';
     MatricularAluno,
     RematricularAluno,
     ResponderPerguntas,
+    UploadDocumento,
   ],
 })
 export class HttpModule {}

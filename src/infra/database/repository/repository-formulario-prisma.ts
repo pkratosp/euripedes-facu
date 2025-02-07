@@ -2,6 +2,7 @@ import { RepositoryFormulario } from '@/repositories/repository-formulario';
 import { Injectable } from '@nestjs/common';
 import { Perguntas, Respostas } from '@prisma/client';
 import { PrismaService } from '../prisma.service';
+import { ResponderPerguntasRequest } from '@/services/responder-perguntas';
 
 @Injectable()
 export class RepositoryFormularioPrisma implements RepositoryFormulario {
@@ -12,19 +13,26 @@ export class RepositoryFormularioPrisma implements RepositoryFormulario {
       data: data,
     });
   }
-  async registarResposta(data: Respostas): Promise<void> {
+
+  async registarResposta(data: ResponderPerguntasRequest): Promise<void> {
     await this.prismaService.respostas.create({
-      data: data,
+      data: {
+        resposta: data.resposta,
+        matriculasId: data.matriculaId,
+        perguntasId: data.perguntasId,
+      },
     });
   }
+
   async buscarRepostasPorMatricula(
     idMatricula: string,
   ): Promise<Respostas[] | []> {
     return await this.prismaService.respostas.findMany({
       where: {
-        Perguntas: {
-          matriculaId: idMatricula,
-        },
+        matriculasId: idMatricula,
+      },
+      include: {
+        Perguntas: true,
       },
     });
   }

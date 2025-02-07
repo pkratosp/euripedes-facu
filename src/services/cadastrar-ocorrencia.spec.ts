@@ -39,6 +39,7 @@ describe('Cadastrar ocorrencia', () => {
       serieEscola: '5 ano',
       sexo: 'masculino',
       ultimaProcedencia: '',
+      documentos: [],
     });
 
     const dataOcorrencia = new Date();

@@ -23,6 +23,7 @@ export type CadastrarAlunoRequest = {
   bairro: string;
   cep: string;
   contatos: string;
+  documentos?: string[];
 };
 
 @Injectable()

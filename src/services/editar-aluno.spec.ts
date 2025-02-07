@@ -36,9 +36,8 @@ describe('editar aluno', () => {
       serieEscola: '5 ano',
       sexo: 'masculino',
       ultimaProcedencia: '',
+      documentos: [],
     });
-
-    console.log(inMemoryRepositoryAluno.alunos[0].id);
 
     await sut.execute(
       {

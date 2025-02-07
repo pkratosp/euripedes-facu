@@ -39,6 +39,7 @@ describe('matricular aluno', () => {
       serieEscola: '5 ano',
       sexo: 'masculino',
       ultimaProcedencia: '',
+      documentos: [],
     });
 
     await sut.execute({
@@ -49,6 +50,7 @@ describe('matricular aluno', () => {
       telefoneMae: '99999',
       telefonePai: '8888',
       telefoneRecado: '8888',
+      documentos: [],
     });
 
     expect(inMemoryRepositoryMatricula.matriculas[0]).toEqual(

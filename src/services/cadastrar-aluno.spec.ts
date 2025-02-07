@@ -33,6 +33,7 @@ describe('cadastrar aluno', () => {
       serieEscola: '5 ano',
       sexo: 'masculino',
       ultimaProcedencia: '',
+      documentos: [],
     });
 
     expect(inMemoryRepositoryAluno.alunos[0]).toEqual(

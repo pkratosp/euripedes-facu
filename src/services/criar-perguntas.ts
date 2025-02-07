@@ -4,7 +4,6 @@ import { Injectable } from '@nestjs/common';
 export type CriarPerguntasRequest = {
   titulo: string;
   descricao: string;
-  matriculaId: string;
 };
 
 @Injectable()

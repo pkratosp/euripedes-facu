@@ -42,6 +42,7 @@ describe('buscar ocorrencia', () => {
       serieEscola: '5 ano',
       sexo: 'masculino',
       ultimaProcedencia: '',
+      documentos: [],
     });
 
     const dataOcorrencia = new Date();

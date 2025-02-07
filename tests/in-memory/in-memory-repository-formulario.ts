@@ -17,16 +17,18 @@ export class InMemoryRepositoryFormulario implements RepositoryFormulario {
 
   async registarResposta(data: ResponderPerguntasRequest): Promise<void> {
     this.respostas.push({
-      ...data,
       id: randomUUID(),
+      matriculasId: data.matriculaId,
+      perguntasId: data.perguntasId,
+      resposta: data.resposta,
     });
   }
 
   async buscarRepostasPorMatricula(
     idMatricula: string,
   ): Promise<Respostas[] | []> {
-    const pergunta = this.perguntas.find(
-      (pergunta) => pergunta.matriculaId === idMatricula,
+    const pergunta = this.respostas.find(
+      (resposta) => resposta.matriculasId === idMatricula,
     );
 
     const respostas = this.respostas.filter(

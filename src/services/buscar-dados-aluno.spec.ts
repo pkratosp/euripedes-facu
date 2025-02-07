@@ -36,6 +36,7 @@ describe('buscar dados de aluno', () => {
       serieEscola: '5 ano',
       sexo: 'masculino',
       ultimaProcedencia: '',
+      documentos: [],
     });
 
     const buscarAluno = await sut.execute(inMemoryRepositoryAluno.alunos[0].id);

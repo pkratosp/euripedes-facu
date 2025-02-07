@@ -5,6 +5,7 @@ import { Respostas } from '@prisma/client';
 export type ResponderPerguntasRequest = {
   resposta: string;
   perguntasId: string | null;
+  matriculaId: string;
 };
 
 @Injectable()

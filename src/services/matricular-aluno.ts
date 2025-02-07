@@ -9,6 +9,7 @@ export type MatricularAlunoRequest = {
   telefoneRecado: string | null;
   responsavelLegal: string;
   anoMatricula: number;
+  documentos?: string[];
 };
 
 @Injectable()

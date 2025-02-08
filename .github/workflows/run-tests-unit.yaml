@@ -1,0 +1,27 @@
+name: Run all tests unit CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-all-tests-unit:
+    name: Run all tests unit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: install nodejs(version lts)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.11.0
+          cache: 'npm'
+
+      - name: install dependency
+        run: npm ci
+
+      - name: run tests
+        run: npm run test

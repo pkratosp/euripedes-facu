@@ -20,8 +20,8 @@ import { JwtAuthGuard } from './jwt-auth.guard';
 
         return {
           signOptions: { algorithm: 'RS256' },
-          privateKey: privateKey,
-          publicKey: publicKey,
+          privateKey: Buffer.from(privateKey, 'base64'),
+          publicKey: Buffer.from(publicKey, 'base64'),
         };
       },
     }),
@@ -30,8 +30,8 @@ import { JwtAuthGuard } from './jwt-auth.guard';
     JwtStratefy,
     {
       provide: APP_GUARD,
-      useClass: JwtAuthGuard
-    }
-  ]
+      useClass: JwtAuthGuard,
+    },
+  ],
 })
 export class AuthModule {}

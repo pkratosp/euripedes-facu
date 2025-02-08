@@ -1,5 +1,6 @@
 import { Public } from '@/infra/auth/public';
-import { LoginAdmin, LoginAdminRequest } from '@/services/login-admin';
+import { LoginAdminRequestDto } from '@/services/dto/login-admin-dto';
+import { LoginAdmin } from '@/services/login-admin';
 import { Body, Controller, Post } from '@nestjs/common';
 
 @Controller('/login')
@@ -8,9 +9,9 @@ export class LoginAdminController {
   constructor(private readonly loginAdmin: LoginAdmin) {}
 
   @Post()
-  async handle(@Body() data: LoginAdminRequest) {
+  async handle(@Body() data: LoginAdminRequestDto) {
     try {
-      await this.loginAdmin.execute(data);
+      return await this.loginAdmin.execute(data);
     } catch (error) {
       throw error;
     }

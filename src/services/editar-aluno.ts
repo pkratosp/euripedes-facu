@@ -1,8 +1,9 @@
 import { RepositoryAluno } from '@/repositories/repository-aluno';
 import { Injectable } from '@nestjs/common';
-import { CadastrarAlunoRequest } from './cadastrar-aluno';
+import { CadastrarAlunoRequestDto } from './dto/cadastrar-aluno-dto';
+import { AlunoNaoEncontradoError } from './errors/aluno-nao-encontrado-error';
 
-export type EditarAlunoRequest = Partial<CadastrarAlunoRequest>;
+export type EditarAlunoRequest = Partial<CadastrarAlunoRequestDto>;
 
 @Injectable()
 export class EditarAluno {
@@ -12,7 +13,7 @@ export class EditarAluno {
     const buscarAluno = await this.repositoryAluno.buscarDadosDoAluno(id);
 
     if (buscarAluno === null) {
-      throw new Error('Aluno não encontrado');
+      throw new AlunoNaoEncontradoError();
     }
 
     const editar = await this.repositoryAluno.editarAluno(data, id);

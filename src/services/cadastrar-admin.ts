@@ -1,23 +1,21 @@
 import { RepositoryAdmin } from '@/repositories/repository-admin';
 import { RepositoryHash } from '@/repositories/repository-hash';
+import { CadastrarAdminRequestDto } from './dto/cadastrar-admin-dto';
+import { Injectable } from '@nestjs/common';
+import { UsuarioExiste } from './errors/usuario-existe-error';
 
-export type CadastrarAdminRequest = {
-  nome: string;
-  username: string;
-  password: string;
-};
-
+@Injectable()
 export class CadastrarAdmin {
   constructor(
     private readonly repositoryAdmin: RepositoryAdmin,
     private readonly repositoryHash: RepositoryHash,
   ) {}
 
-  async execute({ nome, password, username }: CadastrarAdminRequest) {
+  async execute({ nome, password, username }: CadastrarAdminRequestDto) {
     const findUser = await this.repositoryAdmin.buscarUsuario(username);
 
     if (findUser) {
-      throw new Error('Usuário já existe');
+      throw new UsuarioExiste();
     }
 
     const hashPassword = await this.repositoryHash.saltHash(password, 6);

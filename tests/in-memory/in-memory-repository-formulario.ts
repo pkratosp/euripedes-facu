@@ -1,6 +1,6 @@
 import { RepositoryFormulario } from '@/repositories/repository-formulario';
-import { CriarPerguntasRequest } from '@/services/criar-perguntas';
-import { ResponderPerguntasRequest } from '@/services/responder-perguntas';
+import { CriarPerguntasRequestDto } from '@/services/dto/criar-perguntas-dto';
+import { ResponderPerguntasRequestDto } from '@/services/dto/responder-perguntas-dto';
 import { Respostas, Perguntas } from '@prisma/client';
 import { randomUUID } from 'node:crypto';
 
@@ -8,14 +8,14 @@ export class InMemoryRepositoryFormulario implements RepositoryFormulario {
   public perguntas: Perguntas[] = [];
   public respostas: Respostas[] = [];
 
-  async cadastrarPergunta(data: CriarPerguntasRequest): Promise<void> {
+  async cadastrarPergunta(data: CriarPerguntasRequestDto): Promise<void> {
     this.perguntas.push({
       ...data,
       id: randomUUID(),
     });
   }
 
-  async registarResposta(data: ResponderPerguntasRequest): Promise<void> {
+  async registarResposta(data: ResponderPerguntasRequestDto): Promise<void> {
     this.respostas.push({
       id: randomUUID(),
       matriculasId: data.matriculaId,

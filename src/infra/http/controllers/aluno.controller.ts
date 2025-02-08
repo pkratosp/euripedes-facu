@@ -1,9 +1,6 @@
 import { BuscarDadosAluno } from '@/services/buscar-dados-aluno';
-import { BuscarOcorrencias } from '@/services/buscar-ocorrencias';
-import {
-  CadastrarAluno,
-  CadastrarAlunoRequest,
-} from '@/services/cadastrar-aluno';
+import { CadastrarAluno } from '@/services/cadastrar-aluno';
+import { CadastrarAlunoRequestDto } from '@/services/dto/cadastrar-aluno-dto';
 import { EditarAluno, EditarAlunoRequest } from '@/services/editar-aluno';
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 
@@ -16,7 +13,7 @@ export class AlunoController {
   ) {}
 
   @Post()
-  async criarAluno(@Body() data: CadastrarAlunoRequest) {
+  async criarAluno(@Body() data: CadastrarAlunoRequestDto) {
     try {
       await this.cadastrarAluno.execute(data);
     } catch (error) {

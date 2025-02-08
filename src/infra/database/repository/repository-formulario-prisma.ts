@@ -2,7 +2,7 @@ import { RepositoryFormulario } from '@/repositories/repository-formulario';
 import { Injectable } from '@nestjs/common';
 import { Perguntas, Respostas } from '@prisma/client';
 import { PrismaService } from '../prisma.service';
-import { ResponderPerguntasRequest } from '@/services/responder-perguntas';
+import { ResponderPerguntasRequestDto } from '@/services/dto/responder-perguntas-dto';
 
 @Injectable()
 export class RepositoryFormularioPrisma implements RepositoryFormulario {
@@ -14,7 +14,7 @@ export class RepositoryFormularioPrisma implements RepositoryFormulario {
     });
   }
 
-  async registarResposta(data: ResponderPerguntasRequest): Promise<void> {
+  async registarResposta(data: ResponderPerguntasRequestDto): Promise<void> {
     await this.prismaService.respostas.create({
       data: {
         resposta: data.resposta,

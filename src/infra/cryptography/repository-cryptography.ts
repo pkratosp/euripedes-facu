@@ -1,6 +1,8 @@
 import { RepositoryHash } from '@/repositories/repository-hash';
+import { Injectable } from '@nestjs/common';
 import { hash, compare as compareHash } from 'bcryptjs';
 
+@Injectable()
 export class RepositoryCryptography implements RepositoryHash {
   async compare(string: string, hash: string): Promise<boolean> {
     return await compareHash(string, hash);

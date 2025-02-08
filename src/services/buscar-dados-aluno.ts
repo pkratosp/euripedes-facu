@@ -1,5 +1,6 @@
 import { RepositoryAluno } from '@/repositories/repository-aluno';
 import { Injectable } from '@nestjs/common';
+import { AlunoNaoEncontradoError } from './errors/aluno-nao-encontrado-error';
 
 @Injectable()
 export class BuscarDadosAluno {
@@ -9,7 +10,7 @@ export class BuscarDadosAluno {
     const aluno = await this.repositoryAluno.buscarDadosDoAluno(idAluno);
 
     if (aluno === null) {
-      throw new Error('Aluno não encontrado');
+      throw new AlunoNaoEncontradoError();
     }
 
     return aluno;

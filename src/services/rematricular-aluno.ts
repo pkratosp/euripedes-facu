@@ -1,8 +1,8 @@
 import { RepositoryMatricula } from '@/repositories/repository-matricula';
 import { Injectable } from '@nestjs/common';
-import { MatricularAlunoRequest } from './matricular-aluno';
+import { MatricularAlunoRequestDto } from './dto/matricular-aluno-dto';
 
-export type RematricularAlunoRequest = MatricularAlunoRequest;
+export type RematricularAlunoRequest = MatricularAlunoRequestDto;
 
 @Injectable()
 export class RematricularAluno {

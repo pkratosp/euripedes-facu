@@ -1,12 +1,14 @@
 import { RepositoryOcorrencia } from '@/repositories/repository-ocorrencia';
-import { CadastrarOcorrenciaRequest } from '@/services/cadastrar-ocorrencia';
+import { CadastrarOcorrenciaRequestDto } from '@/services/dto/cadastrar-ocorrencia-dto';
 import { Ocorrencias } from '@prisma/client';
 import { randomUUID } from 'node:crypto';
 
 export class InMemoryRepositoryOcorrencia implements RepositoryOcorrencia {
   public ocorrencias: Ocorrencias[] = [];
 
-  async registrarOcorrencia(data: CadastrarOcorrenciaRequest): Promise<void> {
+  async registrarOcorrencia(
+    data: CadastrarOcorrenciaRequestDto,
+  ): Promise<void> {
     this.ocorrencias.push({
       ...data,
       id: randomUUID(),

@@ -9,6 +9,10 @@ import { RepositoryMatricula } from '@/repositories/repository-matricula';
 import { RepositoryMatriculaPrisma } from './repository/repository-matricula-prisma';
 import { RepositoryOcorrencia } from '@/repositories/repository-ocorrencia';
 import { RepositoryOcorrenciaPrisma } from './repository/repository-ocorrencia-prisma';
+import { RepositoryDocumentos } from '@/repositories/repository-documentos';
+import { RepositoryDocumentosPrisma } from './repository/repository-documentos-prisma';
+import { RepositoryAdmin } from '@/repositories/repository-admin';
+import { RepositoryAdminPrisma } from './repository/repository-admin-prisma';
 
 @Module({
   providers: [
@@ -29,6 +33,14 @@ import { RepositoryOcorrenciaPrisma } from './repository/repository-ocorrencia-p
       provide: RepositoryOcorrencia,
       useClass: RepositoryOcorrenciaPrisma,
     },
+    {
+      provide: RepositoryDocumentos,
+      useClass: RepositoryDocumentosPrisma,
+    },
+    {
+      provide: RepositoryAdmin,
+      useClass: RepositoryAdminPrisma,
+    },
   ],
   exports: [
     PrismaService,
@@ -36,6 +48,8 @@ import { RepositoryOcorrenciaPrisma } from './repository/repository-ocorrencia-p
     RepositoryFormulario,
     RepositoryMatricula,
     RepositoryOcorrencia,
+    RepositoryDocumentos,
+    RepositoryAdmin,
   ],
 })
 export class DatabaseModule {}

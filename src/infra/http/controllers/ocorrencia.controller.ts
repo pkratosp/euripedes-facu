@@ -1,8 +1,6 @@
 import { BuscarOcorrencias } from '@/services/buscar-ocorrencias';
-import {
-  CadastrarOcorrencia,
-  CadastrarOcorrenciaRequest,
-} from '@/services/cadastrar-ocorrencia';
+import { CadastrarOcorrencia } from '@/services/cadastrar-ocorrencia';
+import { CadastrarOcorrenciaRequestDto } from '@/services/dto/cadastrar-ocorrencia-dto';
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 
 @Controller('ocorrencias')
@@ -24,7 +22,7 @@ export class OcorrenciaController {
   }
 
   @Post()
-  async registrarOcorrencia(@Body() data: CadastrarOcorrenciaRequest) {
+  async registrarOcorrencia(@Body() data: CadastrarOcorrenciaRequestDto) {
     try {
       await this.cadastrarOcorrencias.execute(data);
     } catch (error) {

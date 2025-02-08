@@ -1,10 +1,10 @@
-import { CriarPerguntasRequest } from '@/services/criar-perguntas';
-import { ResponderPerguntasRequest } from '@/services/responder-perguntas';
+import { CriarPerguntasRequestDto } from '@/services/dto/criar-perguntas-dto';
+import { ResponderPerguntasRequestDto } from '@/services/dto/responder-perguntas-dto';
 import { Perguntas, Respostas } from '@prisma/client';
 
 export abstract class RepositoryFormulario {
-  abstract cadastrarPergunta(data: CriarPerguntasRequest): Promise<void>;
-  abstract registarResposta(data: ResponderPerguntasRequest): Promise<void>;
+  abstract cadastrarPergunta(data: CriarPerguntasRequestDto): Promise<void>;
+  abstract registarResposta(data: ResponderPerguntasRequestDto): Promise<void>;
   abstract buscarRepostasPorMatricula(
     idMatricula: string,
   ): Promise<Respostas[] | []>;

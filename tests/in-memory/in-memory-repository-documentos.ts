@@ -1,0 +1,22 @@
+import { RepositoryDocumentos } from '@/repositories/repository-documentos';
+import { Documentos } from '@prisma/client';
+import { randomUUID } from 'node:crypto';
+
+export class InMemoryRepositoryDocumentos implements RepositoryDocumentos {
+  public documentosArquivo: Documentos[] = [];
+
+  async documentos(nomeArquivo: string, url: string): Promise<{ id: string }> {
+    const idDocumento = randomUUID();
+    this.documentosArquivo.push({
+      alunoId: '',
+      id: idDocumento,
+      idMatricula: '',
+      nomeArquivo: nomeArquivo,
+      url: url,
+    });
+
+    return {
+      id: idDocumento,
+    };
+  }
+}

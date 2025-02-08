@@ -1,7 +1,5 @@
-import {
-  MatricularAluno,
-  MatricularAlunoRequest,
-} from '@/services/matricular-aluno';
+import { MatricularAlunoRequestDto } from '@/services/dto/matricular-aluno-dto';
+import { MatricularAluno } from '@/services/matricular-aluno';
 import {
   RematricularAluno,
   RematricularAlunoRequest,
@@ -16,8 +14,9 @@ export class MatriculaController {
   ) {}
 
   @Post()
-  async matricular(@Body() data: MatricularAlunoRequest) {
+  async matricular(@Body() data: MatricularAlunoRequestDto) {
     try {
+      await this.matricularAluno.execute(data);
     } catch (error) {
       throw error;
     }

@@ -4,7 +4,6 @@ import { ConfigModule } from '@nestjs/config';
 import { envSchema } from './infra/env/env';
 import { HttpModule } from './infra/http/http.module';
 import { AuthModule } from './infra/auth/auth.module';
-import { TesteModule } from './teste/teste.module';
 
 @Module({
   imports: [
@@ -15,7 +14,6 @@ import { TesteModule } from './teste/teste.module';
     EnvModule,
     HttpModule,
     AuthModule,
-    TesteModule,
   ],
   controllers: [],
   providers: [],

@@ -15,6 +15,7 @@ async function bootstrap() {
       'Este projeto é para uma instituição sem fins lucrativos devensenvolvida pelos alunos da faculdade unirp',
     )
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
 
   const documentFactory = () =>

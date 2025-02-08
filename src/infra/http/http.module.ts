@@ -19,6 +19,10 @@ import { StorageModule } from './storage/storage.module';
 import { UploadFileController } from './controllers/upload-file.controller';
 import { CryptographyModule } from '../cryptography/cryptography.module';
 import { UploadDocumento } from '@/services/upload-documento';
+import { CriarAdminController } from './controllers/criar-admin.controller';
+import { LoginAdminController } from './controllers/login-admin.controller';
+import { CadastrarAdmin } from '@/services/cadastrar-admin';
+import { LoginAdmin } from '@/services/login-admin';
 
 @Module({
   imports: [DatabaseModule, StorageModule, StorageModule, CryptographyModule],
@@ -28,6 +32,8 @@ import { UploadDocumento } from '@/services/upload-documento';
     OcorrenciaController,
     FormularioController,
     UploadFileController,
+    CriarAdminController,
+    LoginAdminController,
   ],
   providers: [
     BuscarDadosAluno,
@@ -42,6 +48,8 @@ import { UploadDocumento } from '@/services/upload-documento';
     RematricularAluno,
     ResponderPerguntas,
     UploadDocumento,
+    CadastrarAdmin,
+    LoginAdmin,
   ],
 })
 export class HttpModule {}

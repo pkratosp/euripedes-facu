@@ -1,4 +1,4 @@
-name: Run all tests unit CI
+name: Run-all-tests-unit-CI
 
 on:
   push:

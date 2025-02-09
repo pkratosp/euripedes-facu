@@ -1,4 +1,4 @@
-name: Run all tests e2e
+name: run-all-tests-e2e
 
 on:
   workflow_run:
@@ -25,9 +25,6 @@ jobs:
 
       - name: install dependency
         run: npm ci
-
-      - name: define enviroments
-        env:
 
       - name: install docker compose
         uses: docker/setup-compose-action@v1

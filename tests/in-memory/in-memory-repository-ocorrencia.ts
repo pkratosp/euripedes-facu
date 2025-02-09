@@ -10,7 +10,10 @@ export class InMemoryRepositoryOcorrencia implements RepositoryOcorrencia {
     data: CadastrarOcorrenciaRequestDto,
   ): Promise<void> {
     this.ocorrencias.push({
-      ...data,
+      alunoId: data.alunoId,
+      dataOcorrencia: new Date(),
+      descricao: data.descricao,
+      titulo: data.titulo,
       id: randomUUID(),
     });
   }

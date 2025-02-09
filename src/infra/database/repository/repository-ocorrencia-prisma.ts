@@ -9,7 +9,11 @@ export class RepositoryOcorrenciaPrisma implements RepositoryOcorrencia {
 
   async registrarOcorrencia(data: Ocorrencias): Promise<void> {
     await this.prismaService.ocorrencias.create({
-      data: data,
+      data: {
+        descricao: data.descricao,
+        titulo: data.titulo,
+        alunoId: data.alunoId,
+      },
     });
   }
 

@@ -8,8 +8,5 @@ export class CadastrarOcorrenciaRequestDto {
   descricao: string;
 
   @ApiProperty()
-  dataOcorrencia: Date;
-
-  @ApiProperty()
   alunoId: string;
 }

@@ -25,7 +25,7 @@ describe('Anexar arquivo', () => {
   });
 
   it('nao deve anexar arquivo invalido', async () => {
-    expect(async () => {
+    await expect(async () => {
       await sut.execute({
         buffer: Buffer.from(''),
         fileName: 'file-test.mp3',

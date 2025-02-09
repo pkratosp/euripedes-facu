@@ -11,7 +11,7 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('upload/documento')
-export class UploadFileController {
+export class UploadDocumentoController {
   constructor(private readonly uploadDocumento: UploadDocumento) {}
 
   @Post()
@@ -34,12 +34,13 @@ export class UploadFileController {
     try {
       const idDocumento = await this.uploadDocumento.execute({
         buffer: file.buffer,
-        fileName: file.filename,
+        fileName: file.originalname,
         fileType: file.mimetype,
       });
 
       return idDocumento;
     } catch (error) {
+      console.log(error);
       throw error;
     }
   }

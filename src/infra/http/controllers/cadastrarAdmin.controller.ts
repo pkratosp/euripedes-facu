@@ -3,7 +3,7 @@ import { CadastrarAdminRequestDto } from '@/services/dto/cadastrar-admin-dto';
 import { Body, Controller, Post } from '@nestjs/common';
 
 @Controller('/admin')
-export class CriarAdminController {
+export class CadastrarAdminController {
   constructor(private readonly cadastrarAdmin: CadastrarAdmin) {}
 
   @Post()

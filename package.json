@@ -18,8 +18,9 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "kill:port": "kill-port 3333",
-    "test": "vitest run",
-    "test:watch": "vitest"
+    "test": "vitest run --dir ./src/services",
+    "test:watch": "vitest",
+    "test:e2e": "vitest run --config ./vitest.config-e2e.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.665.0",
@@ -41,6 +42,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.18.0",
+    "@faker-js/faker": "^9.4.0",
     "@nestjs/cli": "^11.0.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.1",
@@ -52,6 +54,7 @@
     "@types/node": "^22.10.7",
     "@types/passport-jwt": "^4.0.1",
     "@types/supertest": "^6.0.2",
+    "dotenv": "^16.4.7",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.2",

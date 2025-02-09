@@ -26,8 +26,19 @@ jobs:
       - name: install dependency
         run: npm ci
 
-      - name: define enviroments
-        run: echo "enviroments value $POSTGRESQL_DATABASE"
+      - name: Define environments
+        run: |
+          echo "POSTGRESQL_DATABASE=$POSTGRESQL_DATABASE" >> $GITHUB_ENV
+          echo "POSTGRESQL_PASSWORD=$POSTGRESQL_PASSWORD" >> $GITHUB_ENV
+          echo "POSTGRESQL_USERNAME=$POSTGRESQL_USERNAME" >> $GITHUB_ENV
+          echo "POSTGRESQL_PORT_NUMBER=$POSTGRESQL_PORT_NUMBER" >> $GITHUB_ENV
+          echo "DATABASE_URL=$DATABASE_URL" >> $GITHUB_ENV
+          echo "CLOUDFLARE_ACCOUNT_ID=$CLOUDFLARE_ACCOUNT_ID" >> $GITHUB_ENV
+          echo "AWS_BUCKET_NAME=$AWS_BUCKET_NAME" >> $GITHUB_ENV
+          echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" >> $GITHUB_ENV
+          echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> $GITHUB_ENV
+          echo "JWT_PUBLIC_KEY=$JWT_PUBLIC_KEY" >> $GITHUB_ENV
+          echo "JWT_PRIVATE_KEY=$JWT_PRIVATE_KEY" >> $GITHUB_ENV
         env:
           POSTGRESQL_DATABASE: ${{ secrets.POSTGRESQL_DATABASE }}
           POSTGRESQL_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}

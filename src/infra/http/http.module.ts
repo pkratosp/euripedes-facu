@@ -18,6 +18,9 @@ import { CryptographyModule } from '../cryptography/cryptography.module';
 import { UploadDocumento } from '@/services/upload-documento';
 import { CadastrarAdmin } from '@/services/cadastrar-admin';
 import { LoginAdmin } from '@/services/login-admin';
+import { ListarTodosAlunos } from '@/services/listar-todos-alunos';
+import { ListarTodasMatriculas } from '@/services/listar-todas-matriculas';
+import { ListaAlunosNomes } from '@/services/lista-alunos-nomes';
 
 // controllers
 import { BuscarDadosAlunoController } from './controllers/buscarDadosAluno.controller';
@@ -32,6 +35,9 @@ import { MatriculaController } from './controllers/matricular.controller';
 import { RematricularAlunoController } from './controllers/rematricularAluno.controller';
 import { ResponderPerguntasController } from './controllers/responderPerguntas.controller';
 import { UploadDocumentoController } from './controllers/uploadDocumento.controller';
+import { ListarTodosAlunosController } from './controllers/listarTodosAlunos.controller';
+import { ListarTodasMatriculasController } from './controllers/listarTodasMatriculas.controller';
+import { ListaAlunosNomesController } from './controllers/listaAlunosNomes.controller';
 
 @Module({
   imports: [DatabaseModule, StorageModule, StorageModule, CryptographyModule],
@@ -48,6 +54,9 @@ import { UploadDocumentoController } from './controllers/uploadDocumento.control
     RematricularAlunoController,
     ResponderPerguntasController,
     UploadDocumentoController,
+    ListarTodosAlunosController,
+    ListarTodasMatriculasController,
+    ListaAlunosNomesController,
   ],
   providers: [
     BuscarDadosAluno,
@@ -64,6 +73,9 @@ import { UploadDocumentoController } from './controllers/uploadDocumento.control
     UploadDocumento,
     CadastrarAdmin,
     LoginAdmin,
+    ListarTodosAlunos,
+    ListarTodasMatriculas,
+    ListaAlunosNomes,
   ],
 })
 export class HttpModule {}

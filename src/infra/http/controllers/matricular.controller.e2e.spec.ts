@@ -56,4 +56,33 @@ describe('Matricular e2e', () => {
     expect(result.statusCode).toBe(201);
     expect(matriculas).toHaveLength(1);
   });
+
+  it('[POST] /matriculas', async () => {
+    const usuario = await factoryCadastrarAdmin.makePrismaCadastrarAdmin();
+
+    const token = await jwt.signAsync({ sub: usuario.id });
+
+    const aluno = await factoryCadastrarAluno.makeCadastrarAluno();
+
+    await prisma.matriculas.deleteMany();
+
+    const result = await request(app.getHttpServer())
+      .post('/matriculas')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        alunoId: aluno.id,
+        atendido: 'atendio',
+        telefoneMae: '312345536',
+        telefonePai: 'jhon doe',
+        telefoneRecado: '32490234',
+        responsavelLegal: 'jhon doe responsavel',
+        anoMatricula: 2025,
+        // documentos: [],
+      });
+
+    const matriculas = await prisma.matriculas.findMany();
+
+    expect(result.statusCode).toBe(201);
+    expect(matriculas).toHaveLength(1);
+  });
 });

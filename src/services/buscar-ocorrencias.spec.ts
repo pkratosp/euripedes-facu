@@ -49,7 +49,6 @@ describe('buscar ocorrencia', () => {
 
     await cadastrarOcorrencia.execute({
       alunoId: inMemoryRepositoryAluno.alunos[0].id,
-      dataOcorrencia,
       descricao: 'descrição do ocorrido',
       titulo: 'ocorencia',
     });

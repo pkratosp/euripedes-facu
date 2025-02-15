@@ -1,22 +1,21 @@
-import { InMemoryRepositoryOcorrencia } from 'tests/in-memory/in-memory-repository-ocorrencia';
-import { CadastrarOcorrencia } from './cadastrar-ocorrencia';
-import { CadastrarAluno } from './cadastrar-aluno';
 import { InMemoryRepositoryAluno } from 'tests/in-memory/in-memory-repository-aluno';
+import { ListarTodosAlunos } from './listar-todos-alunos';
+import { CadastrarAluno } from './cadastrar-aluno';
+import { randomUUID } from 'node:crypto';
+import { ListaAlunosNomes } from './lista-alunos-nomes';
 
 let inMemoryRepositoryAluno: InMemoryRepositoryAluno;
-let inMemoryRepositoryOcorrencia: InMemoryRepositoryOcorrencia;
-let sut: CadastrarOcorrencia;
 let cadastrarAluno: CadastrarAluno;
+let sut: ListaAlunosNomes;
 
-describe('Cadastrar ocorrencia', () => {
+describe('Listar todos alunos somente nome', () => {
   beforeEach(() => {
     inMemoryRepositoryAluno = new InMemoryRepositoryAluno();
-    inMemoryRepositoryOcorrencia = new InMemoryRepositoryOcorrencia();
-    sut = new CadastrarOcorrencia(inMemoryRepositoryOcorrencia);
     cadastrarAluno = new CadastrarAluno(inMemoryRepositoryAluno);
+    sut = new ListaAlunosNomes(inMemoryRepositoryAluno);
   });
 
-  it('deve cadastrar uma ocorrencia', async () => {
+  it('Deve listar todos os alunos', async () => {
     await cadastrarAluno.execute({
       bairro: 'bairro teste',
       cep: '150090',
@@ -42,20 +41,14 @@ describe('Cadastrar ocorrencia', () => {
       documentos: [],
     });
 
-    await sut.execute({
-      alunoId: inMemoryRepositoryAluno.alunos[0].id,
-      descricao: 'descrição do ocorrido',
-      titulo: 'ocorencia',
-    });
+    const alunos = await sut.execute();
 
-    expect(inMemoryRepositoryOcorrencia.ocorrencias).toHaveLength(1);
-    expect(inMemoryRepositoryOcorrencia.ocorrencias).toEqual(
+    expect(alunos.alunos).toHaveLength(1);
+    expect(alunos.alunos).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          alunoId: inMemoryRepositoryAluno.alunos[0].id,
-          dataOcorrencia: expect.any(Date),
-          descricao: 'descrição do ocorrido',
-          titulo: 'ocorencia',
+          id: expect.any(String),
+          nome: expect.any(String),
         }),
       ]),
     );

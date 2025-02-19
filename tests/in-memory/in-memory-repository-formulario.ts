@@ -27,12 +27,8 @@ export class InMemoryRepositoryFormulario implements RepositoryFormulario {
   async buscarRepostasPorMatricula(
     idMatricula: string,
   ): Promise<Respostas[] | []> {
-    const pergunta = this.respostas.find(
-      (resposta) => resposta.matriculasId === idMatricula,
-    );
-
     const respostas = this.respostas.filter(
-      (resposta) => resposta.perguntasId === pergunta?.id,
+      (resposta) => resposta.matriculasId === idMatricula,
     );
 
     return respostas;

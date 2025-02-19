@@ -22,6 +22,7 @@ import { ListarTodosAlunos } from '@/services/listar-todos-alunos';
 import { ListarTodasMatriculas } from '@/services/listar-todas-matriculas';
 import { ListaAlunosNomes } from '@/services/lista-alunos-nomes';
 import { BuscarRespostasPorMatriculaController } from './controllers/buscarRespostasPorMatricula.controller';
+import { ListarTodasPerguntas } from '@/services/listar-todas-perguntas';
 
 // controllers
 import { BuscarDadosAlunoController } from './controllers/buscarDadosAluno.controller';
@@ -39,6 +40,7 @@ import { UploadDocumentoController } from './controllers/uploadDocumento.control
 import { ListarTodosAlunosController } from './controllers/listarTodosAlunos.controller';
 import { ListarTodasMatriculasController } from './controllers/listarTodasMatriculas.controller';
 import { ListaAlunosNomesController } from './controllers/listaAlunosNomes.controller';
+import { ListarTodasPerguntasController } from './controllers/listarTodasPerguntas.controller';
 
 @Module({
   imports: [DatabaseModule, StorageModule, StorageModule, CryptographyModule],
@@ -59,6 +61,7 @@ import { ListaAlunosNomesController } from './controllers/listaAlunosNomes.contr
     ListarTodasMatriculasController,
     ListaAlunosNomesController,
     BuscarRespostasPorMatriculaController,
+    ListarTodasPerguntasController,
   ],
   providers: [
     BuscarDadosAluno,
@@ -78,6 +81,7 @@ import { ListaAlunosNomesController } from './controllers/listaAlunosNomes.contr
     ListarTodosAlunos,
     ListarTodasMatriculas,
     ListaAlunosNomes,
+    ListarTodasPerguntas,
   ],
 })
 export class HttpModule {}

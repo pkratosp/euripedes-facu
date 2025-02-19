@@ -21,6 +21,7 @@ import { LoginAdmin } from '@/services/login-admin';
 import { ListarTodosAlunos } from '@/services/listar-todos-alunos';
 import { ListarTodasMatriculas } from '@/services/listar-todas-matriculas';
 import { ListaAlunosNomes } from '@/services/lista-alunos-nomes';
+import { BuscarRespostasPorMatriculaController } from './controllers/buscarRespostasPorMatricula.controller';
 
 // controllers
 import { BuscarDadosAlunoController } from './controllers/buscarDadosAluno.controller';
@@ -57,6 +58,7 @@ import { ListaAlunosNomesController } from './controllers/listaAlunosNomes.contr
     ListarTodosAlunosController,
     ListarTodasMatriculasController,
     ListaAlunosNomesController,
+    BuscarRespostasPorMatriculaController,
   ],
   providers: [
     BuscarDadosAluno,

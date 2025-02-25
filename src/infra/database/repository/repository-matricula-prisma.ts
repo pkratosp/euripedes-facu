@@ -4,6 +4,7 @@ import { Matriculas } from '@prisma/client';
 import { PrismaService } from '../prisma.service';
 import { RepositoryPaginaParametros } from '@/repositories/repository-pagina-parametros';
 import { MatricularAlunoRequestDto } from '@/services/dto/matricular-aluno-dto';
+import { EditarDadosMatriculaDto } from '@/services/dto/editar-dados-matricula-dto';
 
 @Injectable()
 export class RepositoryMatriculaPrisma implements RepositoryMatricula {
@@ -12,7 +13,7 @@ export class RepositoryMatriculaPrisma implements RepositoryMatricula {
   async matricularAluno({
     documentos,
     ...data
-  }: MatricularAlunoRequestDto): Promise<void> {
+  }: MatricularAlunoRequestDto): Promise<{ id: string }> {
     const { id } = await this.prismaService.matriculas.create({
       data: {
         anoMatricula: data.anoMatricula,
@@ -40,12 +41,10 @@ export class RepositoryMatriculaPrisma implements RepositoryMatricula {
         },
       });
     }
-  }
 
-  async rematricularAluno(data: Matriculas): Promise<void> {
-    await this.prismaService.matriculas.create({
-      data: data,
-    });
+    return {
+      id,
+    };
   }
 
   async buscarTodasMatriculas({ page }: RepositoryPaginaParametros): Promise<{
@@ -56,13 +55,84 @@ export class RepositoryMatriculaPrisma implements RepositoryMatricula {
       this.prismaService.matriculas.findMany({
         skip: (page - 1) * 20,
         take: 20,
+        include: {
+          aluno: {
+            select: {
+              id: true,
+              nome: true,
+            },
+          },
+        },
+        where: {
+          deletado: null,
+        },
       }),
-      this.prismaService.matriculas.count(),
+      this.prismaService.matriculas.count({
+        where: {
+          deletado: null,
+        },
+      }),
     ]);
 
     return {
       matriculas: matriculas,
       total: totalMatriculas,
     };
+  }
+
+  async desmatricularAluno(idMatricula: string): Promise<void> {
+    await this.prismaService.matriculas.update({
+      data: {
+        deletado: new Date(),
+      },
+      where: {
+        id: idMatricula,
+      },
+    });
+  }
+
+  async editarMatricula(
+    idMatricula: string,
+    { documentos, ...data }: Partial<EditarDadosMatriculaDto>,
+  ): Promise<void> {
+    await this.prismaService.matriculas.update({
+      data: {
+        atendido: data.atendido,
+        telefoneMae: data.telefoneMae,
+        telefonePai: data.telefonePai,
+        telefoneRecado: data.telefoneRecado,
+        responsavelLegal: data.responsavelLegal,
+      },
+      where: {
+        id: idMatricula,
+      },
+    });
+
+    if (documentos) {
+      await this.prismaService.documentos.updateMany({
+        data: {
+          idMatricula: idMatricula,
+        },
+        where: {
+          id: {
+            in: documentos,
+          },
+        },
+      });
+    }
+  }
+
+  async rematricularAluno(
+    idMatricula: string,
+    anoMatricula: number,
+  ): Promise<void> {
+    await this.prismaService.matriculas.update({
+      data: {
+        anoMatricula: anoMatricula,
+      },
+      where: {
+        id: idMatricula,
+      },
+    });
   }
 }

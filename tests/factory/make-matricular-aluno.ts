@@ -17,6 +17,7 @@ export function makeMatricularAluno(
     telefoneMae: faker.phone.number(),
     telefonePai: faker.phone.number(),
     telefoneRecado: faker.phone.number(),
+    deletado: null,
     ...override,
   };
 }

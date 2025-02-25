@@ -24,7 +24,11 @@ export class MatriculaController {
   @Post()
   async handle(@Body() data: MatricularAlunoRequestDto) {
     try {
-      await this.matricularAluno.execute(data);
+      const { id } = await this.matricularAluno.execute(data);
+
+      return {
+        id,
+      };
     } catch (error) {
       throw error;
     }

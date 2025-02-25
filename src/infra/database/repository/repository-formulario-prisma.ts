@@ -38,7 +38,17 @@ export class RepositoryFormularioPrisma implements RepositoryFormulario {
   }
 
   async buscarPerguntas(): Promise<Perguntas[]> {
-    return await this.prismaService.perguntas.findMany();
+    return await this.prismaService.perguntas.findMany({
+      include: {
+        respostas: {
+          select: {
+            id: true,
+            resposta: true,
+            perguntasId: true,
+          },
+        },
+      },
+    });
   }
 
   async removerPergunta(idPergunta: string): Promise<void> {

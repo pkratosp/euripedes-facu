@@ -59,16 +59,17 @@ model Ocorrencias {
 }
 
 model Matriculas {
-  id               String  @id @default(uuid())
+  id               String    @id @default(uuid())
   atendido         String
   telefoneMae      String
   telefonePai      String?
   telefoneRecado   String?
   responsavelLegal String
   anoMatricula     Int
+  alunoId          String
+  deletado         DateTime?
 
-  Aluno   Aluno  @relation(fields: [alunoId], references: [id])
-  alunoId String
+  aluno Aluno @relation(fields: [alunoId], references: [id])
 
   documentosMatricula Documentos[]
   respostas           Respostas[]

@@ -10,7 +10,6 @@ import { CadastrarOcorrencia } from '@/services/cadastrar-ocorrencia';
 import { CriarPerguntas } from '@/services/criar-perguntas';
 import { EditarAluno } from '@/services/editar-aluno';
 import { MatricularAluno } from '@/services/matricular-aluno';
-import { RematricularAluno } from '@/services/rematricular-aluno';
 import { ResponderPerguntas } from '@/services/responder-perguntas';
 import { DatabaseModule } from '../database/database.module';
 import { StorageModule } from './storage/storage.module';
@@ -21,8 +20,10 @@ import { LoginAdmin } from '@/services/login-admin';
 import { ListarTodosAlunos } from '@/services/listar-todos-alunos';
 import { ListarTodasMatriculas } from '@/services/listar-todas-matriculas';
 import { ListaAlunosNomes } from '@/services/lista-alunos-nomes';
-import { BuscarRespostasPorMatriculaController } from './controllers/buscarRespostasPorMatricula.controller';
 import { ListarTodasPerguntas } from '@/services/listar-todas-perguntas';
+import { RematricularAluno } from '@/services/rematricular-aluno';
+import { EditarDadosMatricula } from '@/services/editar-dados-matricula';
+import { DesmatricularAluno } from '@/services/desmatricular-aluno';
 
 // controllers
 import { BuscarDadosAlunoController } from './controllers/buscarDadosAluno.controller';
@@ -34,12 +35,15 @@ import { CriarPerguntasController } from './controllers/criarPergunta.controller
 import { EditarAlunoController } from './controllers/editarDadosAluno.controller';
 import { LoginAdminController } from './controllers/loginAdmin.controller';
 import { MatriculaController } from './controllers/matricular.controller';
-import { RematricularAlunoController } from './controllers/rematricularAluno.controller';
 import { ResponderPerguntasController } from './controllers/responderPerguntas.controller';
 import { UploadDocumentoController } from './controllers/uploadDocumento.controller';
 import { ListarTodosAlunosController } from './controllers/listarTodosAlunos.controller';
 import { ListarTodasMatriculasController } from './controllers/listarTodasMatriculas.controller';
 import { ListaAlunosNomesController } from './controllers/listaAlunosNomes.controller';
+import { BuscarRespostasPorMatriculaController } from './controllers/buscarRespostasPorMatricula.controller';
+import { RematricularAlunoController } from './controllers/rematricularAluno.controller';
+import { EditarDadosMatriculaController } from './controllers/editarDadosMatricula.controller';
+import { DesmatricularAlunoController } from './controllers/desmatricularAluno.controller';
 import { ListarTodasPerguntasController } from './controllers/listarTodasPerguntas.controller';
 
 @Module({
@@ -54,7 +58,6 @@ import { ListarTodasPerguntasController } from './controllers/listarTodasPergunt
     EditarAlunoController,
     LoginAdminController,
     MatriculaController,
-    RematricularAlunoController,
     ResponderPerguntasController,
     UploadDocumentoController,
     ListarTodosAlunosController,
@@ -62,6 +65,9 @@ import { ListarTodasPerguntasController } from './controllers/listarTodasPergunt
     ListaAlunosNomesController,
     BuscarRespostasPorMatriculaController,
     ListarTodasPerguntasController,
+    RematricularAlunoController,
+    EditarDadosMatriculaController,
+    DesmatricularAlunoController,
   ],
   providers: [
     BuscarDadosAluno,
@@ -73,7 +79,6 @@ import { ListarTodasPerguntasController } from './controllers/listarTodasPergunt
     CriarPerguntas,
     EditarAluno,
     MatricularAluno,
-    RematricularAluno,
     ResponderPerguntas,
     UploadDocumento,
     CadastrarAdmin,
@@ -82,6 +87,9 @@ import { ListarTodasPerguntasController } from './controllers/listarTodasPergunt
     ListarTodasMatriculas,
     ListaAlunosNomes,
     ListarTodasPerguntas,
+    RematricularAluno,
+    EditarDadosMatricula,
+    DesmatricularAluno,
   ],
 })
 export class HttpModule {}

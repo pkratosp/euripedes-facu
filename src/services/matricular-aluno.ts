@@ -7,6 +7,9 @@ export class MatricularAluno {
   constructor(private readonly repositoryMatricula: RepositoryMatricula) {}
 
   async execute(data: MatricularAlunoRequestDto) {
-    await this.repositoryMatricula.matricularAluno(data);
+    const { id } = await this.repositoryMatricula.matricularAluno(data);
+    return {
+      id,
+    };
   }
 }

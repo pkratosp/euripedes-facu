@@ -1,6 +1,11 @@
 import { EnvService } from '@/infra/env/env.service';
 import { Uploader, UploaderParams } from '@/repositories/repository-storage';
-import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import {
+  PutObjectCommand,
+  GetObjectCommand,
+  S3Client,
+  GetObjectCommandOutput,
+} from '@aws-sdk/client-s3';
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
 
@@ -38,5 +43,16 @@ export class R2Storage implements Uploader {
     return {
       url: uniqueFileName,
     };
+  }
+
+  async getDocument(documentoId: string): Promise<GetObjectCommandOutput> {
+    const responseFile = await this.client.send(
+      new GetObjectCommand({
+        Bucket: this.envService.get('AWS_BUCKET_NAME'),
+        Key: documentoId,
+      }),
+    );
+
+    return responseFile;
   }
 }

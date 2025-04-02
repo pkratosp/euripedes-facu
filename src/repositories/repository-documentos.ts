@@ -1,3 +1,5 @@
+import { Documentos } from '@prisma/client';
+
 export abstract class RepositoryDocumentos {
   abstract documentos(
     nomeArquivo: string,
@@ -5,4 +7,8 @@ export abstract class RepositoryDocumentos {
   ): Promise<{
     id: string;
   }>;
+  abstract buscarDocumentos(
+    matriculaId?: string,
+    alunoId?: string,
+  ): Promise<Documentos[] | []>;
 }

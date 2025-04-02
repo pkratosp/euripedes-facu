@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { RepositoryDocumentos } from '@/repositories/repository-documentos';
+import { Documentos } from '@prisma/client';
 
 @Injectable()
 export class RepositoryDocumentosPrisma implements RepositoryDocumentos {
@@ -17,5 +18,25 @@ export class RepositoryDocumentosPrisma implements RepositoryDocumentos {
     return {
       id: documento.id,
     };
+  }
+
+  async buscarDocumentos(
+    matriculaId?: string,
+    alunoId?: string,
+  ): Promise<Documentos[] | []> {
+    const documentos = await this.prismaService.documentos.findMany({
+      where: {
+        OR: [
+          {
+            idMatricula: matriculaId,
+          },
+          {
+            alunoId: alunoId,
+          },
+        ],
+      },
+    });
+
+    return documentos;
   }
 }

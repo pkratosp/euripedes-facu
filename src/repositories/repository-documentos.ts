@@ -7,8 +7,5 @@ export abstract class RepositoryDocumentos {
   ): Promise<{
     id: string;
   }>;
-  abstract buscarDocumentos(
-    matriculaId?: string,
-    alunoId?: string,
-  ): Promise<Documentos[] | []>;
+  abstract buscarDocumentos(idDocumento: string): Promise<Documentos | null>;
 }

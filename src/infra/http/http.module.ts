@@ -45,9 +45,11 @@ import { RematricularAlunoController } from './controllers/rematricularAluno.con
 import { EditarDadosMatriculaController } from './controllers/editarDadosMatricula.controller';
 import { DesmatricularAlunoController } from './controllers/desmatricularAluno.controller';
 import { ListarTodasPerguntasController } from './controllers/listarTodasPerguntas.controller';
+import { BuscarDocumentosController } from './controllers/buscarDocumentos.controller';
+import { BuscarDocumento } from '@/services/buscar-documento';
 
 @Module({
-  imports: [DatabaseModule, StorageModule, StorageModule, CryptographyModule],
+  imports: [DatabaseModule, StorageModule, CryptographyModule],
   controllers: [
     BuscarDadosAlunoController,
     BuscarOcorrenciasController,
@@ -68,6 +70,7 @@ import { ListarTodasPerguntasController } from './controllers/listarTodasPergunt
     RematricularAlunoController,
     EditarDadosMatriculaController,
     DesmatricularAlunoController,
+    BuscarDocumentosController,
   ],
   providers: [
     BuscarDadosAluno,
@@ -90,6 +93,7 @@ import { ListarTodasPerguntasController } from './controllers/listarTodasPergunt
     RematricularAluno,
     EditarDadosMatricula,
     DesmatricularAluno,
+    BuscarDocumento,
   ],
 })
 export class HttpModule {}

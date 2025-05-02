@@ -20,20 +20,17 @@ export class RepositoryDocumentosPrisma implements RepositoryDocumentos {
     };
   }
 
-  async buscarDocumentos(
-    matriculaId?: string,
-    alunoId?: string,
-  ): Promise<Documentos[] | []> {
-    const documentos = await this.prismaService.documentos.findMany({
+  async buscarDocumentos(idDocumento: string): Promise<Documentos | null> {
+    const documentos = await this.prismaService.documentos.findUnique({
       where: {
-        OR: [
-          {
-            idMatricula: matriculaId,
-          },
-          {
-            alunoId: alunoId,
-          },
-        ],
+        id: idDocumento,
+      },
+      select: {
+        id: true,
+        nomeArquivo: true,
+        url: true,
+        idMatricula: true,
+        alunoId: true,
       },
     });
 

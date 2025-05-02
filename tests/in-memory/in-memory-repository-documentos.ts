@@ -19,4 +19,8 @@ export class InMemoryRepositoryDocumentos implements RepositoryDocumentos {
       id: idDocumento,
     };
   }
+
+  buscarDocumentos(idDocumento: string): Promise<Documentos | null> {
+    throw new Error('not implemented');
+  }
 }

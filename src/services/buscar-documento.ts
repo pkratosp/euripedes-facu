@@ -10,14 +10,17 @@ export class BuscarDocumento {
     private readonly uploader: Uploader,
   ) {}
 
-  async execute({ alunoId, matriculaId }: BuscarDocumentoDto) {
-    const documentosUrls = await this.repositoryDocumentos.buscarDocumentos(
-      matriculaId,
-      alunoId,
+  async execute({ documentoId }: BuscarDocumentoDto) {
+    const document =
+      await this.repositoryDocumentos.buscarDocumentos(documentoId);
+
+    const { Body, ContentType } = await this.uploader.getDocument(
+      document?.url!,
     );
 
-    for (const documento of documentosUrls) {
-      const responseDocumento = await this.uploader.getDocument(documento.url);
-    }
+    return {
+      Body,
+      ContentType,
+    };
   }
 }

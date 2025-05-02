@@ -1,4 +1,5 @@
 import { Uploader, UploaderParams } from '@/repositories/repository-storage';
+import { GetObjectCommandOutput } from '@aws-sdk/client-s3';
 import { randomUUID } from 'node:crypto';
 
 interface Upload {
@@ -20,5 +21,9 @@ export class FakeUploader implements Uploader {
     return {
       url,
     };
+  }
+
+  getDocument(documentoId: string): Promise<GetObjectCommandOutput> {
+    throw new Error('not implemented');
   }
 }

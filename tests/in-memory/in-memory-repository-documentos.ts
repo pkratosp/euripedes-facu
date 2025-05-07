@@ -23,4 +23,15 @@ export class InMemoryRepositoryDocumentos implements RepositoryDocumentos {
   buscarDocumentos(idDocumento: string): Promise<Documentos | null> {
     throw new Error('not implemented');
   }
+
+  async todosDocumentosMatriculas(matriculaId: string): Promise<Documentos[]> {
+    return this.documentosArquivo.filter(
+      (documento) => documento.idMatricula === matriculaId,
+    );
+  }
+  async todosDocumentosAlunos(alunoId: string): Promise<Documentos[]> {
+    return this.documentosArquivo.filter(
+      (documento) => documento.alunoId === alunoId,
+    );
+  }
 }

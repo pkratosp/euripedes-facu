@@ -8,4 +8,8 @@ export abstract class RepositoryDocumentos {
     id: string;
   }>;
   abstract buscarDocumentos(idDocumento: string): Promise<Documentos | null>;
+  abstract todosDocumentosMatriculas(
+    matriculaId: string,
+  ): Promise<Documentos[]>;
+  abstract todosDocumentosAlunos(alunoId: string): Promise<Documentos[]>;
 }

@@ -36,4 +36,24 @@ export class RepositoryDocumentosPrisma implements RepositoryDocumentos {
 
     return documentos;
   }
+
+  async todosDocumentosMatriculas(matriculaId: string): Promise<Documentos[]> {
+    const documentos = await this.prismaService.documentos.findMany({
+      where: {
+        idMatricula: matriculaId,
+      },
+    });
+
+    return documentos;
+  }
+
+  async todosDocumentosAlunos(alunoId: string): Promise<Documentos[]> {
+    const documentos = await this.prismaService.documentos.findMany({
+      where: {
+        alunoId: alunoId,
+      },
+    });
+
+    return documentos;
+  }
 }

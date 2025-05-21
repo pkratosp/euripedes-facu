@@ -35,13 +35,29 @@ export class RepositoryAlunoPrisma implements RepositoryAluno {
     }
   }
 
-  async editarAluno(data: EditarAlunoRequest, id: string): Promise<void> {
+  async editarAluno(
+    { documentos, ...data }: EditarAlunoRequest,
+    id: string,
+  ): Promise<void> {
     await this.prismaService.aluno.update({
       data: data,
       where: {
         id,
       },
     });
+
+    if (documentos) {
+      await this.prismaService.documentos.updateMany({
+        data: {
+          alunoId: id,
+        },
+        where: {
+          id: {
+            in: documentos,
+          },
+        },
+      });
+    }
   }
 
   async buscarDadosDoAluno(id: string): Promise<Aluno | null> {

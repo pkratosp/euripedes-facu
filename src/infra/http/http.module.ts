@@ -24,6 +24,10 @@ import { ListarTodasPerguntas } from '@/services/listar-todas-perguntas';
 import { RematricularAluno } from '@/services/rematricular-aluno';
 import { EditarDadosMatricula } from '@/services/editar-dados-matricula';
 import { DesmatricularAluno } from '@/services/desmatricular-aluno';
+import { BuscarMatriculaPorNome } from '@/services/buscar-matricula-por-nome';
+import { BuscarTodosDocumentos } from '@/services/buscar-todos-documentos';
+import { BuscarNomeAluno } from '@/services/buscar-nome-aluno';
+import { BuscarDocumento } from '@/services/buscar-documento';
 
 // controllers
 import { BuscarDadosAlunoController } from './controllers/buscarDadosAluno.controller';
@@ -46,10 +50,10 @@ import { EditarDadosMatriculaController } from './controllers/editarDadosMatricu
 import { DesmatricularAlunoController } from './controllers/desmatricularAluno.controller';
 import { ListarTodasPerguntasController } from './controllers/listarTodasPerguntas.controller';
 import { BuscarDocumentosController } from './controllers/buscarDocumentos.controller';
-import { BuscarDocumento } from '@/services/buscar-documento';
 import { BuscarTodosDocumentosMatriculaController } from './controllers/buscarTodosDocumentosMatricula.controller';
 import { BuscarTodosDocumentosAlunoController } from './controllers/buscarTodosDocumentosAluno.controller';
-import { BuscarTodosDocumentos } from '@/services/buscar-todos-documentos';
+import { BuscarNomeAlunoController } from './controllers/buscarNomeAluno.controller';
+import { BuscarMatriculaPorNomeController } from './controllers/buscarMatriculaPorNome.controller';
 
 @Module({
   imports: [DatabaseModule, StorageModule, CryptographyModule],
@@ -76,6 +80,8 @@ import { BuscarTodosDocumentos } from '@/services/buscar-todos-documentos';
     BuscarDocumentosController,
     BuscarTodosDocumentosMatriculaController,
     BuscarTodosDocumentosAlunoController,
+    BuscarNomeAlunoController,
+    BuscarMatriculaPorNomeController,
   ],
   providers: [
     BuscarDadosAluno,
@@ -100,6 +106,8 @@ import { BuscarTodosDocumentos } from '@/services/buscar-todos-documentos';
     DesmatricularAluno,
     BuscarDocumento,
     BuscarTodosDocumentos,
+    BuscarNomeAluno,
+    BuscarMatriculaPorNome,
   ],
 })
 export class HttpModule {}

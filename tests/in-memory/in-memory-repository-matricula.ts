@@ -75,4 +75,10 @@ export class InMemoryRepositoryMatricula implements RepositoryMatricula {
       anoMatricula: anoMatricula,
     };
   }
+
+  buscarMatriculaPorNome(
+    name: string,
+  ): Promise<{ matriculas: Matriculas[]; total: number }> {
+    throw new Error('Method not implemented.');
+  }
 }

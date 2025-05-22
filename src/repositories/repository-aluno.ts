@@ -13,6 +13,9 @@ export abstract class RepositoryAluno {
   abstract buscarTodosAlunos({
     page,
   }: RepositoryPaginaParametros): Promise<{ alunos: Aluno[]; total: number }>;
+  abstract buscarAlunoPorNome(
+    name: string,
+  ): Promise<{ alunos: Aluno[]; total: number }>;
   abstract buscarTodosAlunosNomes(): Promise<{
     alunos: Array<{ id: string; nome: string }>;
   }>;

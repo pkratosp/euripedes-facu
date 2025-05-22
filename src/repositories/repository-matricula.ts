@@ -22,4 +22,9 @@ export abstract class RepositoryMatricula {
     matriculas: Matriculas[];
     total: number;
   }>;
+
+  abstract buscarMatriculaPorNome(name: string): Promise<{
+    matriculas: Matriculas[];
+    total: number;
+  }>;
 }

@@ -109,6 +109,37 @@ export class RepositoryAlunoPrisma implements RepositoryAluno {
     };
   }
 
+  async buscarAlunoPorNome(
+    name: string,
+  ): Promise<{ alunos: Aluno[]; total: number }> {
+    if (name !== 'vazio') {
+      const [alunos, totalAlunos] = await Promise.all([
+        this.prismaService.$queryRaw<any>`
+        SELECT * FROM public."Aluno" al WHERE al."nome" LIKE ${'%' + name + '%'}
+      `,
+        this.prismaService.aluno.count(),
+      ]);
+
+      return {
+        alunos: alunos,
+        total: totalAlunos,
+      };
+    } else {
+      const [alunos, totalAlunos] = await Promise.all([
+        this.prismaService.aluno.findMany({
+          skip: (1 - 1) * 20,
+          take: 20,
+        }),
+        this.prismaService.aluno.count(),
+      ]);
+
+      return {
+        alunos: alunos,
+        total: totalAlunos,
+      };
+    }
+  }
+
   async buscarTodosAlunosNomes(): Promise<{
     alunos: Array<{ id: string; nome: string }>;
   }> {

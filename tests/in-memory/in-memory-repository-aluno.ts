@@ -71,4 +71,10 @@ export class InMemoryRepositoryAluno implements RepositoryAluno {
       alunos: alunos,
     };
   }
+
+  buscarAlunoPorNome(
+    name: string,
+  ): Promise<{ alunos: Aluno[]; total: number }> {
+    throw new Error('Method not implemented.');
+  }
 }

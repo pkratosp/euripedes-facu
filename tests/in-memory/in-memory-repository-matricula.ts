@@ -81,4 +81,19 @@ export class InMemoryRepositoryMatricula implements RepositoryMatricula {
   ): Promise<{ matriculas: Matriculas[]; total: number }> {
     throw new Error('Method not implemented.');
   }
+
+  buscarTodasMatriculasDeletadas({
+    page,
+  }: RepositoryPaginaParametros): Promise<{
+    matriculas: Matriculas[];
+    total: number;
+  }> {
+    throw new Error('Method not implemented.');
+  }
+
+  buscarDesmatriculadosPorNome(
+    name: string,
+  ): Promise<{ matriculas: Matriculas[]; total: number }> {
+    throw new Error('Method not implemented.');
+  }
 }

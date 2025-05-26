@@ -28,6 +28,8 @@ import { BuscarMatriculaPorNome } from '@/services/buscar-matricula-por-nome';
 import { BuscarTodosDocumentos } from '@/services/buscar-todos-documentos';
 import { BuscarNomeAluno } from '@/services/buscar-nome-aluno';
 import { BuscarDocumento } from '@/services/buscar-documento';
+import { ListarTodasMatriculasDeletadas } from '@/services/listar-todas-matriculas-deletadas';
+import { BuscarDesmatriculadosPorNome } from '@/services/buscar-desmatriculados-por-nome';
 
 // controllers
 import { BuscarDadosAlunoController } from './controllers/buscarDadosAluno.controller';
@@ -54,6 +56,8 @@ import { BuscarTodosDocumentosMatriculaController } from './controllers/buscarTo
 import { BuscarTodosDocumentosAlunoController } from './controllers/buscarTodosDocumentosAluno.controller';
 import { BuscarNomeAlunoController } from './controllers/buscarNomeAluno.controller';
 import { BuscarMatriculaPorNomeController } from './controllers/buscarMatriculaPorNome.controller';
+import { ListarTodasMatriculasDeletadasController } from './controllers/listarTodasMatriculasDeletadas.controller';
+import { BuscarDesmatriculadosPorNomeController } from './controllers/buscarDesmatriculadosPorNome.controller';
 
 @Module({
   imports: [DatabaseModule, StorageModule, CryptographyModule],
@@ -82,6 +86,8 @@ import { BuscarMatriculaPorNomeController } from './controllers/buscarMatriculaP
     BuscarTodosDocumentosAlunoController,
     BuscarNomeAlunoController,
     BuscarMatriculaPorNomeController,
+    ListarTodasMatriculasDeletadasController,
+    BuscarDesmatriculadosPorNomeController,
   ],
   providers: [
     BuscarDadosAluno,
@@ -108,6 +114,8 @@ import { BuscarMatriculaPorNomeController } from './controllers/buscarMatriculaP
     BuscarTodosDocumentos,
     BuscarNomeAluno,
     BuscarMatriculaPorNome,
+    ListarTodasMatriculasDeletadas,
+    BuscarDesmatriculadosPorNome,
   ],
 })
 export class HttpModule {}

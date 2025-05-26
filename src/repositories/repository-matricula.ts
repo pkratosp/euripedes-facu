@@ -27,4 +27,14 @@ export abstract class RepositoryMatricula {
     matriculas: Matriculas[];
     total: number;
   }>;
+  abstract buscarTodasMatriculasDeletadas({
+    page,
+  }: RepositoryPaginaParametros): Promise<{
+    matriculas: Matriculas[];
+    total: number;
+  }>;
+  abstract buscarDesmatriculadosPorNome(name: string): Promise<{
+    matriculas: Matriculas[];
+    total: number;
+  }>;
 }

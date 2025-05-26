@@ -1,15 +1,12 @@
 import { RepositoryMatricula } from '@/repositories/repository-matricula';
 import { Injectable } from '@nestjs/common';
-
-type BuscarMatriculaPorNomeType = {
-  name: string;
-};
+import { BuscarMatriculaPorNomeDto } from './dto/buscar-matricula-por-nome-dto';
 
 @Injectable()
 export class BuscarMatriculaPorNome {
   constructor(private readonly repositoryMatricula: RepositoryMatricula) {}
 
-  async execute({ name }: BuscarMatriculaPorNomeType) {
+  async execute({ name }: BuscarMatriculaPorNomeDto) {
     const { matriculas, total } =
       await this.repositoryMatricula.buscarMatriculaPorNome(name);
 

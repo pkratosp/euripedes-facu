@@ -15,6 +15,7 @@ export class InMemoryRepositoryOcorrencia implements RepositoryOcorrencia {
       descricao: data.descricao,
       titulo: data.titulo,
       id: randomUUID(),
+      userId: randomUUID(),
     });
   }
   async buscarOcorrenciasPorAluno(

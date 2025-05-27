@@ -9,4 +9,7 @@ export class CadastrarOcorrenciaRequestDto {
 
   @ApiProperty()
   alunoId: string;
+
+  @ApiProperty()
+  userId: string;
 }

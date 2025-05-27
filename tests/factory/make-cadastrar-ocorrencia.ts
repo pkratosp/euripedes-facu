@@ -13,6 +13,7 @@ export function makeCadastrarOcorrencia(
     dataOcorrencia: new Date(),
     descricao: faker.lorem.sentences(),
     id: id ?? randomUUID(),
+    userId: randomUUID(),
     titulo: faker.lorem.slug(),
     ...override,
   };

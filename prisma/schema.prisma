@@ -17,6 +17,8 @@ model User {
   nome     String
   username String @unique
   password String
+
+  Ocorrencias Ocorrencias[]
 }
 
 model Aluno {
@@ -53,6 +55,9 @@ model Ocorrencias {
   titulo         String
   descricao      String
   dataOcorrencia DateTime @default(now())
+
+  User User @relation(fields: [userId], references: [id])
+  userId String
 
   Aluno   Aluno  @relation(fields: [alunoId], references: [id])
   alunoId String
